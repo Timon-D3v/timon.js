@@ -3,7 +3,7 @@ This is a javascript package that contains some functions and variables that I (
 
 
 # Type
-This package has 4 files. 2 for each front- and backend, split in a module and a normal javascript file.
+This package contains a module and a CommonJS file that contain some functions and variables that I (Timon Fiedler) need from time to time.
 
 
 ## License
