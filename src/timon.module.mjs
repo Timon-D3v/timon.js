@@ -7,7 +7,11 @@
 "use strict";
 
 // Debug options
-const DEBUG = false;
+let DEBUG = false;
+
+function timonjs_setDebugMode(value) {
+  DEBUG = value;
+}
 
 
 // Functions
@@ -1138,18 +1142,14 @@ function getQuery(query, caller = document) {
   }
 
   /**
-   * Clicks the element using the native click method.
-   */
-  const native_click = elements.click.bind(elements);
-  /**
    * Triggers a click event on the element.
    * @param {Function} callback - The callback function to execute when the click event is triggered.
    */
   const click = (callback) => {
     if (typeof callback === "function") {
-      elements.addEventListener("click", callback);
+      elements.forEach(elm => elm.addEventListener("click", callback));
     } else {
-      native_click();
+      elements.forEach(elm => elm.click());
     }
   };
   try {
@@ -3123,6 +3123,7 @@ const BREAKPOINTS = {
 // Exports
 
 export default {
+  timonjs_setDebugMode,
   toBase64,
   toBase64Max,
   toDateString,
@@ -3152,6 +3153,7 @@ export default {
 };
 
 export {
+  timonjs_setDebugMode,
   toBase64,
   toBase64Max,
   toDateString,
