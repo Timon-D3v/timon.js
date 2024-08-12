@@ -120,12 +120,21 @@ function getElm(id, caller = document) {
     element._on = on;
   }
 
+
+  /**
+   * Clicks the element using the native click method.
+   */
+  const native_click = element.click.bind(element);
   /**
    * Triggers a click event on the element.
    * @param {Function} callback - The callback function to execute when the click event is triggered.
    */
   const click = (callback) => {
-    element.addEventListener("click", callback);
+    if (typeof callback === "function") {
+      element.addEventListener("click", callback);
+    } else {
+      native_click();
+    }
   };
   try {
     element.click = click;
@@ -550,7 +559,11 @@ function getElm(id, caller = document) {
    */
   const childrenClick = (callback) => {
     Array.from(element.children).forEach(child => {
-      child.addEventListener("click", callback);
+      if (typeof callback === "function") {
+        element.addEventListener("click", callback);
+      } else {
+        native_click();
+      }
     });
   };
   try {
@@ -1125,11 +1138,19 @@ function getQuery(query, caller = document) {
   }
 
   /**
-   * Triggers a click event on all elements.
+   * Clicks the element using the native click method.
+   */
+  const native_click = elements.click.bind(elements);
+  /**
+   * Triggers a click event on the element.
    * @param {Function} callback - The callback function to execute when the click event is triggered.
    */
   const click = (callback) => {
-    elements.forEach(elm => elm.addEventListener("click", callback));
+    if (typeof callback === "function") {
+      elements.addEventListener("click", callback);
+    } else {
+      native_click();
+    }
   };
   try {
     elements.click = click;
@@ -1377,7 +1398,11 @@ function getQuery(query, caller = document) {
   const childrenClick = (callback) => {
     elements.forEach((element) => {
       Array.from(element.children).forEach(child => {
-        child.addEventListener("click", callback);
+        if (typeof callback === "function") {
+          element.addEventListener("click", callback);
+        } else {
+          native_click();
+        }
       });
     });
   };
@@ -1540,12 +1565,20 @@ function getQuery(query, caller = document) {
       element._on = on;
     }
 
+      /**
+     * Clicks the element using the native click method.
+     */
+    const native_click = element.click.bind(element);
     /**
      * Triggers a click event on the element.
      * @param {Function} callback - The callback function to execute when the click event is triggered.
      */
     const click = (callback) => {
-      element.addEventListener("click", callback);
+      if (typeof callback === "function") {
+        element.addEventListener("click", callback);
+      } else {
+        native_click();
+      }
     };
     try {
       element.click = click;
@@ -2673,7 +2706,7 @@ function errorField(message = "Etwas hat nicht geklappt. Versuche es in einigen 
     max-width: 70vw;
     margin: 0;
     padding: 20px;
-    background-color: var(--error, #d61c35);
+    background-color: var(--error,: 0xd61c35);
     opacity: 1;
     box-sizing: border-box;
     border-radius: 15px;
@@ -2687,7 +2720,7 @@ function errorField(message = "Etwas hat nicht geklappt. Versuche es in einigen 
     aspect-ratio: 1/1;
     object-fit: contain;
     object-position: center;
-    transform: translateY(20%);
+    transform: translateY(-10%);
     margin-right: 0.25em;
   `;
 
@@ -2738,7 +2771,7 @@ function infoField(message, time = 5000) {
     max-width: 70vw;
     margin: 0;
     padding: 20px;
-    background-color: var(--info, #4286bd);
+    background-color: var(--info,: 0x4286bd);
     opacity: 1;
     box-sizing: border-box;
     border-radius: 15px;
@@ -2753,10 +2786,10 @@ function infoField(message, time = 5000) {
     object-fit: contain;
     object-position: center;
     margin-right: 0.25em;
-    transform: translateY(20%) rotate(180deg);
+    transform: translateY(-10%) rotate(180deg);
   `;
 
-  field.classList.add("error");
+  field.classList.add("info");
 
   img.alt = "Info";
   img.src = "https://cdn.jsdelivr.net/npm/timonjs/assets/alert.svg";
@@ -2802,7 +2835,7 @@ function successField(message, time = 5000) {
     max-width: 70vw;
     margin: 0;
     padding: 20px;
-    background-color: var(--success, #40b959);
+    background-color: var(--success,: 0x40b959);
     opacity: 1;
     box-sizing: border-box;
     border-radius: 15px;
@@ -2817,10 +2850,10 @@ function successField(message, time = 5000) {
     object-fit: contain;
     object-position: center;
     margin-right: 0.25em;
-    transform: translateY(20%) rotate(180deg);
+    transform: translateY(-10%) rotate(180deg);
   `;
 
-  field.classList.add("error");
+  field.classList.add("success");
 
   img.alt = "Info";
   img.src = "https://cdn.jsdelivr.net/npm/timonjs/assets/alert.svg";
