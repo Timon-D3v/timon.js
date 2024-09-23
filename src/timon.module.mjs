@@ -2094,6 +2094,8 @@ function getQuery(query, caller = document) {
 
     element.getQuery = query => getQuery(query, element);
   }
+
+  return elements;
 }
 
 /**
