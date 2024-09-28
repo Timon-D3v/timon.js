@@ -28,8 +28,8 @@ function timonjs_setDebugMode(value) {
 
 function timonjs_message() {
   const message = (color, size, padding) => `color: ${color}; font-size: ${size}em; background-color: #000; font-family: Consolas, monospace; padding: 0.75em ${padding}; display: block;`;
-  console.log("%cCustom Coded by @timon.dev", message("#0f0", 1, "25%"));
-  console.log("%cVisit https://timondev.com", message("#fff", 2, "35%"));
+  console.log("%cCustom Coded by @timon.dev", message("#0f0", 2, "25%"));
+  console.log("%cVisit https://timondev.com", message("#fff", 1, "35%"));
 }
 
 // Functions
