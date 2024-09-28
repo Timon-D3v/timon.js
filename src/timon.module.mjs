@@ -1355,7 +1355,7 @@ function getQuery(query, caller = document) {
 
   if (elements.length === 0) {
     // No elements with that query exist
-    console.error(`The element with id ${id} does not exist!`);
+    console.error(`There is no element with query ${query}`);
   }
 
   /**
